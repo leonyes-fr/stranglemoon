@@ -1,8 +1,7 @@
-CREATE TABLE employee
+CREATE TABLE users
 (
- employeeName varchar(100) NOT NULL,
-  employeeId varchar(11) NOT NULL ,
- employeeAddress varchar(100) DEFAULT NULL,
- employeeEmail varchar(100) DEFAULT NULL,
- PRIMARY KEY (employeeId)
+ userId SERIAL PRIMARY KEY,
+ username varchar(100) DEFAULT NULL,
+ password varchar(100) DEFAULT NULL,
+ email varchar(100) DEFAULT NULL
 );
