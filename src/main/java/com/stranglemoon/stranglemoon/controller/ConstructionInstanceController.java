@@ -12,7 +12,7 @@ public class ConstructionInstanceController {
     @Autowired
     private ConstructionInstanceService constructionInstanceService;
 
-    @GetMapping("/constructionintances")
+    @GetMapping("/constructioninstances")
     public Iterable<ConstructionInstance> getConstructionInstances() {
         return constructionInstanceService.getConstructionInstances();
 
