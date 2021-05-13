@@ -12,7 +12,7 @@ public class ConstructionCostController {
     @Autowired
     private ConstructionCostService constructionCostService;
 
-    @GetMapping("/constructioncost")
+    @GetMapping("/constructioncosts")
     public Iterable<ConstructionCost> getConstructionCosts() {
         return constructionCostService.getConstructionCosts();
     }
