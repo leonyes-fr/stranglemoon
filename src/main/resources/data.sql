@@ -1,1 +1,1 @@
-  insert into users (username, password , email) values('chloe','azer','chloe@gmail.com');
+  insert
