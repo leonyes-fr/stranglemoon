@@ -35,6 +35,16 @@ public class InventoryController {
         return inventory;
     }
 
+    @PutMapping(value = "/inventories/carrot/{id}")
+    public @ResponseBody Inventory updateCarrot(@PathVariable("id") long id) {
+        Optional<Inventory> optionalInventory = inventoryRepository.findById(id);
+        Inventory inventory = optionalInventory.get();
+        inventory.setCarrot(inventory.getCarrot() + 1);
+
+        inventoryRepository.save(inventory);
+        return inventory;
+    }
+
 
 
 }
