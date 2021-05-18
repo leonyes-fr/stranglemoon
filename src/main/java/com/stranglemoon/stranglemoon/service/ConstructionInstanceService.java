@@ -21,4 +21,8 @@ public class ConstructionInstanceService {
         return constructionInstanceRepository.findAll();
     }
 
+    public ConstructionInstance saveConstructionInstance(ConstructionInstance constructionInstance) {
+        return constructionInstanceRepository.save(constructionInstance);
+    }
+
 }
