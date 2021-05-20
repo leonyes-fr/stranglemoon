@@ -23,7 +23,7 @@ public class ConstructionInstanceController {
     @PutMapping(value = "/constructioninstance/nextrank/{id}")
     public @ResponseBody
     ConstructionInstance updateTavern(@PathVariable("id") long id) {
-        return constructionInstanceService.updateTavern(id);
+        return constructionInstanceService.updateRank(id);
     }
 
 }

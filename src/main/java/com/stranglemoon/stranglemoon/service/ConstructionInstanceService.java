@@ -33,7 +33,7 @@ public class ConstructionInstanceService {
         return constructionInstanceRepository.save(constructionInstance);
     }
 
-    public ConstructionInstance updateTavern(long id) {
+    public ConstructionInstance updateRank(long id) {
         Optional<ConstructionInstance> optionalConstructionInstance = this.getConstructionInstance(id);
         ConstructionInstance constructionInstance = optionalConstructionInstance.get();  // j'ai mon instance de taverne avec son actual Rank
 
