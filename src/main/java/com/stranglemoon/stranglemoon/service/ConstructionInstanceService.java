@@ -42,17 +42,22 @@ public class ConstructionInstanceService {
 
         Inventory inventory = inventoryService.getInventories().iterator().next();  //je prend mon inventaire perso.
 
-
-        // faire un if getconstructionInstance.name = tavern alors getTavern aprés. sinon constructionCost.getFarm etc...
-
-        if ((inventory.getGold() - constructionCost.getTavern()) >= 0) {  //NE MARCHE PAS A CAUSE DE GET TAVERN QUI N ES PAS GENERIQUE !
-            inventory.setGold(inventory.getGold() - constructionCost.getTavern()); //NE MARCHE PAS A CAUSE DE GET TAVERN QUI N ES PAS GENERIQUE !
-            constructionInstance.setActualRank(constructionInstance.getActualRank() + 1);
-            this.saveConstructionInstance(constructionInstance);
-            return constructionInstance;
-        }else {
-            return constructionInstance;
+        if (constructionInstance.getName().equals("tavern")){
+            if ((inventory.getGold() - constructionCost.getTavern()) >= 0) {
+                inventory.setGold(inventory.getGold() - constructionCost.getTavern());
+                constructionInstance.setActualRank(constructionInstance.getActualRank() + 1);
+                this.saveConstructionInstance(constructionInstance);
+                return constructionInstance;
+            }
+        }else if (constructionInstance.getName().equals("farm")) {
+            if ((inventory.getGold() - constructionCost.getFarm()) >= 0) {
+                inventory.setGold(inventory.getGold() - constructionCost.getFarm());
+                constructionInstance.setActualRank(constructionInstance.getActualRank() + 1);
+                this.saveConstructionInstance(constructionInstance);
+                return constructionInstance;
+            }
         }
+        return constructionInstance;
     }
 
 }
