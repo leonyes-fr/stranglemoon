@@ -33,17 +33,20 @@ public class ConstructionInstanceService {
         return constructionInstanceRepository.save(constructionInstance);
     }
 
-    public ConstructionInstance updateRank(long id) {
+    public ConstructionInstance updateRank(long id) { // recoit 1 pour taverne par exemple
         Optional<ConstructionInstance> optionalConstructionInstance = this.getConstructionInstance(id);
-        ConstructionInstance constructionInstance = optionalConstructionInstance.get();  // j'ai mon instance de taverne avec son actual Rank
+        ConstructionInstance constructionInstance = optionalConstructionInstance.get();  // j'ai mon instance de taverne avec son actual Rank genre id1 name tavern actualrank
 
-        Optional<ConstructionCost> optionalConstructionCost = constructionCostService.getConstructionCost(new Long(constructionInstance.getActualRank()));
+        Optional<ConstructionCost> optionalConstructionCost = constructionCostService.getConstructionCost((long) constructionInstance.getActualRank() + 1);
         ConstructionCost constructionCost = optionalConstructionCost.get(); // Je prend le cout de construction d'une taverne ou l'id est = a actual Rank de mon instance.
 
         Inventory inventory = inventoryService.getInventories().iterator().next();  //je prend mon inventaire perso.
 
-        if (inventory.getGold() - constructionCost.getTavern() > 0) {  // Si 100 - 20 > 0 alors...
-            inventory.setGold(inventory.getGold() - constructionCost.getTavern());
+
+        // faire un if getconstructionInstance.name = tavern alors getTavern aprés. sinon constructionCost.getFarm etc...
+
+        if ((inventory.getGold() - constructionCost.getTavern()) >= 0) {  //NE MARCHE PAS A CAUSE DE GET TAVERN QUI N ES PAS GENERIQUE !
+            inventory.setGold(inventory.getGold() - constructionCost.getTavern()); //NE MARCHE PAS A CAUSE DE GET TAVERN QUI N ES PAS GENERIQUE !
             constructionInstance.setActualRank(constructionInstance.getActualRank() + 1);
             this.saveConstructionInstance(constructionInstance);
             return constructionInstance;
