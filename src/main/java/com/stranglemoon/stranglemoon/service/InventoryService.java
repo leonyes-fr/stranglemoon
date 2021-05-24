@@ -21,4 +21,24 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
+    public Inventory updateGold(long id) {
+        Optional<Inventory> optionalInventory = inventoryRepository.findById(id);
+        Inventory inventory = optionalInventory.get();
+        inventory.setGold(inventory.getGold() + 10);
+        inventory.setCarrot(inventory.getCarrot() - 1);
+
+        inventoryRepository.save(inventory);
+        return inventory;
+    }
+
+
+    public Inventory updateCarrot(long id) {
+        Optional<Inventory> optionalInventory = inventoryRepository.findById(id);
+        Inventory inventory = optionalInventory.get();
+        inventory.setCarrot(inventory.getCarrot() + 1);
+
+        inventoryRepository.save(inventory);
+        return inventory;
+    }
+
 }
