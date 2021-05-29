@@ -13,11 +13,15 @@ public class ConstructionInstanceController {
     private ConstructionInstanceService constructionInstanceService;
 
 
+    @GetMapping("/token")
+    public String greeting(@RequestHeader("authorization") String language) {
+        // code that uses the language variable who represent the token
+        return language;
+    }
 
     @GetMapping("/constructioninstances")
     public Iterable<ConstructionInstance> getConstructionInstances() {
         return constructionInstanceService.getConstructionInstances();
-
     }
 
     @PutMapping(value = "/constructioninstance/nextrank/{id}")
