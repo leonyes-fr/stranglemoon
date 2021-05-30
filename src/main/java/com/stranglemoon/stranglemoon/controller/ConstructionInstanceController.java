@@ -15,7 +15,7 @@ public class ConstructionInstanceController {
 
     @GetMapping("/token")
     public String greeting(@RequestHeader("authorization") String language) {
-        // code that uses the language variable who represent the token
+        // code that uses the language variable who represent the token. donc si pas de token, tu n'agis pas !
         return language;
     }
 
