@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,14 +23,8 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @PostMapping("/auth")
-    public Optional<Account> getAccountToken(@RequestBody List<String> credentials) {
-
-        String username = credentials.get(0);
-        String password = credentials.get(1);
-        return accountRepository.findAccount(username, password);
-
-
-
+    public Optional<Account> getAccountToken(@RequestBody Account credential) {
+        return accountRepository.findAccount(credential.getUsername(), credential.getPassword());
     }
 
 }
