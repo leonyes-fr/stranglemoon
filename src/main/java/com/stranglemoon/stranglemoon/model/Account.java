@@ -1,6 +1,8 @@
 package com.stranglemoon.stranglemoon.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name= "account")
@@ -16,10 +18,9 @@ public class Account {
 
     private String token;
 
-    @OneToOne
-    @JoinColumn(name = "constructioninstanceid", referencedColumnName = "id")
-    private ConstructionInstance constructionInstance;
 
+    @OneToMany(mappedBy="account" )
+    private List<ConstructionInstance> constructionInstanceSet = new ArrayList<>();
 
     public Long getId() {
         return id;

@@ -15,6 +15,10 @@ public class ConstructionInstance {
 
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name="account_id",referencedColumnName="id",nullable=false)
+    private Account account;
+
 
     public Long getId() {
         return id;
