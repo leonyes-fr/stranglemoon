@@ -16,6 +16,11 @@ public class Account {
 
     private String token;
 
+    @OneToOne
+    @JoinColumn(name = "constructioninstanceid", referencedColumnName = "id")
+    private ConstructionInstance constructionInstance;
+
+
     public Long getId() {
         return id;
     }

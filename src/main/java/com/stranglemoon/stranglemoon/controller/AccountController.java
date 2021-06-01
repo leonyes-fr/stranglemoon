@@ -1,6 +1,5 @@
 package com.stranglemoon.stranglemoon.controller;
 
-
 import com.stranglemoon.stranglemoon.model.Account;
 import com.stranglemoon.stranglemoon.repository.AccountRepository;
 import com.stranglemoon.stranglemoon.service.AccountService;
