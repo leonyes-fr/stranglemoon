@@ -4,6 +4,8 @@ import com.stranglemoon.stranglemoon.model.Account;
 import com.stranglemoon.stranglemoon.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Optional;
 
@@ -16,4 +18,11 @@ public class AccountService {
     public Optional<Account> getAccountToken(Long id) {
         return accountRepository.findById(id);
     }
+
+    public Account getActualUser(String token) {
+        return accountRepository.getActualUser(token);
+
+    }
+
+
 }

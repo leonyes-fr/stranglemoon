@@ -19,9 +19,9 @@ public class ConstructionInstanceController {
         return language;
     }
 
-    @GetMapping("/constructioninstances")
-    public Iterable<ConstructionInstance> getConstructionInstances() {
-        return constructionInstanceService.getConstructionInstances();
+    @GetMapping("/constructioninstances") // récupére les batiments de l'user en cours.
+    public Iterable<ConstructionInstance> getConstructionInstances(@RequestHeader("authorization") String token) {
+        return constructionInstanceService.getConstructionInstances(token);
     }
 
     @PutMapping(value = "/constructioninstance/nextrank/{id}")

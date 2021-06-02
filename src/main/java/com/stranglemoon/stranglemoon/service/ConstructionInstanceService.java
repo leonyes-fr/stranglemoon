@@ -1,11 +1,13 @@
 package com.stranglemoon.stranglemoon.service;
 
+import com.stranglemoon.stranglemoon.model.Account;
 import com.stranglemoon.stranglemoon.model.ConstructionCost;
 import com.stranglemoon.stranglemoon.model.ConstructionInstance;
 import com.stranglemoon.stranglemoon.model.Inventory;
 import com.stranglemoon.stranglemoon.repository.ConstructionInstanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Optional;
 
@@ -21,12 +23,16 @@ public class ConstructionInstanceService {
     @Autowired
     private ConstructionCostService constructionCostService;
 
+    @Autowired
+    private AccountService accountService;
+
     public Optional<ConstructionInstance> getConstructionInstance(final Long id) {
         return constructionInstanceRepository.findById(id);
     }
 
-    public Iterable<ConstructionInstance> getConstructionInstances() {
-        return constructionInstanceRepository.findAll();
+    public Iterable<ConstructionInstance> getConstructionInstances(String token) { // récuperer tous les batiments ou l'id = l'user actuel.
+        Account user = accountService.getActualUser(token);
+        return constructionInstanceRepository.getByUser(user.getId());
     }
 
     public ConstructionInstance saveConstructionInstance(ConstructionInstance constructionInstance) {

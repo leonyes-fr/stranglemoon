@@ -14,6 +14,11 @@ public class Inventory {
 
     private int gold;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
     public Long getId() {
         return id;
     }
