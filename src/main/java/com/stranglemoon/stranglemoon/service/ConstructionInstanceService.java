@@ -39,14 +39,14 @@ public class ConstructionInstanceService {
         return constructionInstanceRepository.save(constructionInstance);
     }
 
-    public ConstructionInstance updateRank(long id) { // recoit 1 pour taverne par exemple
+    public ConstructionInstance updateRank(long id, String token) { // recoit 1 pour taverne par exemple
         Optional<ConstructionInstance> optionalConstructionInstance = this.getConstructionInstance(id);
         ConstructionInstance constructionInstance = optionalConstructionInstance.get();  // j'ai mon instance de taverne avec son actual Rank genre id1 name tavern actualrank
 
         Optional<ConstructionCost> optionalConstructionCost = constructionCostService.getConstructionCost((long) constructionInstance.getActualRank() + 1);
         ConstructionCost constructionCost = optionalConstructionCost.get(); // Je prend le cout de construction d'une taverne ou l'id est = a actual Rank de mon instance.
 
-        Inventory inventory = inventoryService.getInventories().iterator().next();  //je prend mon inventaire perso.
+        Inventory inventory = inventoryService.getInventories(token).iterator().next();  //je prend mon inventaire perso.
 
         if (constructionInstance.getName().equals("tavern")){
             if ((inventory.getGold() - constructionCost.getTavern()) >= 0) {

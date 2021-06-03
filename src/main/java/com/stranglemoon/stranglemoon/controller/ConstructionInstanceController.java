@@ -12,13 +12,6 @@ public class ConstructionInstanceController {
     @Autowired
     private ConstructionInstanceService constructionInstanceService;
 
-
-    @GetMapping("/token")
-    public String greeting(@RequestHeader("authorization") String language) {
-        // code that uses the language variable who represent the token. donc si pas de token, tu n'agis pas !
-        return language;
-    }
-
     @GetMapping("/constructioninstances") // récupére les batiments de l'user en cours.
     public Iterable<ConstructionInstance> getConstructionInstances(@RequestHeader("authorization") String token) {
         return constructionInstanceService.getConstructionInstances(token);
@@ -26,8 +19,8 @@ public class ConstructionInstanceController {
 
     @PutMapping(value = "/constructioninstance/nextrank/{id}")
     public @ResponseBody
-    ConstructionInstance updateRank(@PathVariable("id") long id) {
-        return constructionInstanceService.updateRank(id);
+    ConstructionInstance updateRank(@PathVariable("id") long id,@RequestHeader("authorization") String token) {
+        return constructionInstanceService.updateRank(id, token);
     }
 
 }

@@ -13,10 +13,9 @@ public class InventoryController {
     private InventoryService inventoryService;
 
     @GetMapping("/inventories")
-    public Iterable<Inventory> getInventories() {
-        return inventoryService.getInventories();
+    public Iterable<Inventory> getInventories(@RequestHeader("authorization") String token) {
+        return inventoryService.getInventories(token);
     }
-
 
     @PutMapping(value = "/inventories/gold/{id}")
     public @ResponseBody Inventory updateGold(@PathVariable("id") long id) {
