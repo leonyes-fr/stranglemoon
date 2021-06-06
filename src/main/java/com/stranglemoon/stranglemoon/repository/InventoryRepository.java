@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryRepository extends CrudRepository<Inventory, Long> {
 
-
     @Query(value = "SELECT * FROM inventory c where c.account_id= :id", nativeQuery = true)
     Iterable<Inventory> getByUser(long id);
 

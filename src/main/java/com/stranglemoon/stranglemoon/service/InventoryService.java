@@ -6,6 +6,9 @@ import com.stranglemoon.stranglemoon.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,18 @@ public class InventoryService {
 
     @Autowired
     private AccountService accountService;
+
+
+
+    @PersistenceContext
+    public EntityManager entityManager;
+
+    @Transactional
+    public void addInventory(Long id) {
+        entityManager.createNativeQuery("insert into inventory (carrot, gold, account_id) values(200, 100,?);")
+                .setParameter(1, id)
+                .executeUpdate();
+    }
 
     public Optional<Inventory> getInventory(final Long id) {
         return inventoryRepository.findById(id);
